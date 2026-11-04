@@ -1,0 +1,28 @@
+# Dependencies and secrets
+**/node_modules/
+**/.env
+**/.env.*
+!**/.env.example
+
+# Build output
+**/.next/
+**/out/
+**/build/
+**/dist/
+**/.turbo/
+**/*.tsbuildinfo
+**/next-env.d.ts
+
+# Deploy and tooling
+**/.vercel
+**/coverage/
+**/.eslintcache
+*.log
+
+# OS and editor cruft
+.DS_Store
+Thumbs.db
+*.swp
+*.zip
+
+# Projects excluded from this repo (leading / anchors them to the root)

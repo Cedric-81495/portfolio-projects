@@ -1,0 +1,100 @@
+import { useNavigate, Link } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { useEffect,  } from "react";
+import { fetchAdminProducts, deleteProduct } from "../../../redux/slices/adminProductSlice";
+import PageWrapper from "../Common/PageWrapper";
+
+const ProductManagement = () => {
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
+
+    const { user } = useSelector((state) => state.auth);
+    const { products, loading, error } = useSelector((state) => state.adminProducts);
+
+    useEffect(() => {
+        if (!user) return;
+    
+        if (user.role !== "admin") {
+          navigate("/");
+        } else {
+          dispatch(fetchAdminProducts());
+        }
+      }, [dispatch, user, navigate]);
+    
+  const handleEdit = (id) => {
+    if (window.confirm("Are you sure you want to delete the Product?")){
+    dispatch(deleteProduct(id));
+    }
+  }
+
+
+  if(error) return <p>Session expired. Please Logout and re-login</p>
+
+  return (
+     <PageWrapper loading={loading}>
+    <div className="max-w-7xl mx-auto p-6">
+        <h2 className="text-2xl font-bold mb-6">Product Management</h2>
+        <div className="overflow-x-auto shadow-md sm:rounded-lg ">
+            <table className="min-w-full text-left text-gray-600">
+                <thead className="bg-gray-300 text-xs uppercase text-gray-900">
+                    <tr>
+                        <th className="py-3 px-4">Name</th>
+                        <th className="py-3 px-4">Category</th>
+                        <th className="py-3 px-4">Price</th>
+                        <th className="py-3 px-4">Sku</th>
+                        <th className="py-3 px-4">Stock</th>
+                        <th className="py-3 px-4">Status</th>
+                        <th className="py-3 px-4">Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {products.length > 0 ? (
+                        products.map((product) =>  
+                        <tr 
+                            key={product._id}
+                            className="border-b hover:gray-50 cursor-pointer"
+                        >
+                            <td className="p-4 font-medium text-gray-900 whitespace-nowrap">
+                                {product.name}
+                            </td>
+                            <td className="p-4"> {product.category}</td>
+                            <td className="p-4"> {product.price}</td>
+                            <td className="p-4"> {product.sku}</td>
+                            <td className={`p-4 ${product.countInStock === 0 ? "text-red-600 font-semibold" : ""}`}>
+                                {product.countInStock === 0 ? "Out of stock" : product.countInStock}
+                            </td>
+                            <td className="p-4">
+                                <span className={`px-2 py-1 rounded text-xs font-semibold ${
+                                    product.isPublished ? "bg-green-100 text-green-800" : "bg-gray-200 text-gray-700"
+                                }`}>
+                                    {product.isPublished ? "Published" : "Draft"}
+                                </span>
+                            </td>
+                            <td className="p-4">
+                                <Link 
+                                    to={`/admin/products/${product._id}/edit`}
+                                    className="bg-yellow-500 text-white px-2 py-2 rounded mr-2 hover:bg-yellow-600"
+                                >
+                                    Edit
+                                </Link>
+                                <button 
+                                    onClick={() => handleEdit(product._id)}
+                                     className="bg-red-500 text-white px-2 py-1 rounded mr-2 hover:bg-red-600"
+                                    >Delete
+                                    </button>
+                            </td>
+                        </tr>  
+                        )) : (
+                            <tr>
+                                <td colSpan={7} className="p-4 text-gray-500 text-center">No Products Found</td>
+                            </tr>
+                        )}
+                </tbody>
+            </table>
+        </div>
+    </div>
+    </PageWrapper>
+  );
+};
+
+export default ProductManagement;
