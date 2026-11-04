@@ -1,0 +1,19 @@
+/*
+Theme Name:   Brand M3dia (Hello Elementor Child)
+Theme URI:    https://github.com/Cedric-81495/portfolio-projects
+Description:  Child theme of Hello Elementor for the Brand M3dia demo agency site.
+Author:       Jhon Cedric Susmerano
+Author URI:   https://github.com/Cedric-81495
+Template:     hello-elementor
+Version:      1.0.0
+Requires PHP: 7.4
+Text Domain:  hello-elementor-child
+License:      GNU General Public License v2 or later
+License URI:  https://www.gnu.org/licenses/gpl-2.0.html
+*/
+
+/*
+ * Custom styles.
+ * Set colors and fonts in Elementor's global settings first.
+ * Use this file only for styling Elementor Free can't handle.
+ */
