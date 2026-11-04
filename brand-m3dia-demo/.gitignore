@@ -1,0 +1,25 @@
+# Brand M3dia Demo: safety net for the WordPress project.
+# Code is copied here from the local Studio site after testing.
+# These rules block anything sensitive or not ours, even if copied by mistake.
+
+# WordPress config files (contain database credentials and security keys)
+wp-config.php
+wp-config-*.php
+.htaccess
+
+# WordPress core (not our code)
+**/wp-admin/
+**/wp-includes/
+
+# Database files and dumps (can contain user data and password hashes)
+*.sql
+*.sqlite
+.ht.sqlite
+**/database/
+
+# Media uploads (generated content, not source code)
+**/uploads/
+
+# Backups and caches
+**/backups/
+**/cache/
