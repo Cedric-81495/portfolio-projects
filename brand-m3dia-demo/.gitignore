@@ -1,5 +1,5 @@
 # Brand M3dia Demo: safety net for the WordPress project.
-# Code is copied here from the local Studio site after testing.
+# Code lives here and is linked into the local Studio site via directory junctions.
 # These rules block anything sensitive or not ours, even if copied by mistake.
 
 # WordPress config files (contain database credentials and security keys)
@@ -23,3 +23,8 @@ wp-config-*.php
 # Backups and caches
 **/backups/
 **/cache/
+
+# Environment files, logs, and dependencies
+.env
+*.log
+node_modules/
