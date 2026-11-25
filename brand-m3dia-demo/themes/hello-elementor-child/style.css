@@ -17,3 +17,18 @@ License URI:  https://www.gnu.org/licenses/gpl-2.0.html
  * Set colors and fonts in Elementor's global settings first.
  * Use this file only for styling Elementor Free can't handle.
  */
+
+ /* Header "Get a Quote" button (menu item with class nav-cta) */
+.site-header .site-navigation ul.menu li.nav-cta > a {
+	background-color: #F59E0B;
+	color: #0B1F3A;
+	font-weight: 600;
+	padding: 10px 20px;
+	border-radius: 8px;
+}
+
+.site-header .site-navigation ul.menu li.nav-cta > a:hover,
+.site-header .site-navigation ul.menu li.nav-cta > a:focus-visible {
+	background-color: #D97706;
+	color: #0B1F3A;
+}
